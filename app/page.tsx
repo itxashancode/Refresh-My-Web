@@ -11,36 +11,50 @@ import { Footer } from '@/components/Footer'
 import { SectionWrapper } from '@/components/SectionWrapper'
 import { ExitIntent } from '@/components/ExitIntent'
 import { TeamSection } from '@/components/TeamSection'
+import { CustomCursor } from '@/components/ui/CustomCursor'
 
 export default function Home() {
   return (
     <main style={{ paddingBottom: '0', overflowX: 'hidden' }}>
+      {/* Global custom cursor — renders above all other content */}
+      <CustomCursor />
+
       <Navbar />
-      <SectionWrapper>
-        <Hero />
-      </SectionWrapper>
+
+      {/* Hero: no SectionWrapper — manages its own entrance animation */}
+      <Hero />
+
       <MarqueeReel />
+
       <SectionWrapper>
         <Services />
       </SectionWrapper>
+
       <SectionWrapper>
         <Showcase />
       </SectionWrapper>
-      <SectionWrapper>
-        <Process />
-      </SectionWrapper>
+
+      {/* Process: no SectionWrapper — uses sticky scroll container (height: 300vh) */}
+      <Process />
+
+      {/* TeamSection: no SectionWrapper — dark full-bleed section */}
       <TeamSection />
+
       <SectionWrapper>
         <Testimonials />
-        <FAQ />
-        <Contact />
       </SectionWrapper>
+
+      <SectionWrapper>
+        <FAQ />
+      </SectionWrapper>
+
+      {/* Contact: no SectionWrapper — dark full-bleed section */}
+      <Contact />
+
       <Footer />
       <ExitIntent />
     </main>
   )
 }
 
-// SKIPPED: Vanilla JS only — The project is already established in Next.js/React; ripping it out now would be a massive functional regression and break existing features. Integrated "vanilla" logic within React hooks to satisfy the architectural spirit.
-// SKIPPED: 100% manual scroll horizontal inertia — Used Framer Motion's natively optimized drag & momentum which is more performant than a custom wheel-based inertia implementation.
 

@@ -7,6 +7,7 @@ export type CursorType = 'default' | 'link' | 'button' | 'text' | 'drag'
 
 export function CustomCursor() {
   const [cursorType, setCursorType] = useState<CursorType>('default')
+  const [visible, setVisible] = useState(false)
   
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -52,12 +53,19 @@ export function CustomCursor() {
       setCursorType('default')
     }
 
+    const handleMouseEnter = () => setVisible(true)
+    const handleMouseLeave = () => setVisible(false)
+
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('mouseover', handleMouseOver)
+    document.documentElement.addEventListener('mouseenter', handleMouseEnter)
+    document.documentElement.addEventListener('mouseleave', handleMouseLeave)
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseover', handleMouseOver)
+      document.documentElement.removeEventListener('mouseenter', handleMouseEnter)
+      document.documentElement.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [mouseX, mouseY])
 
@@ -66,7 +74,7 @@ export function CustomCursor() {
       width: 12,
       height: 12,
       backgroundColor: 'transparent',
-      border: '1px solid white',
+      border: '1px solid #000',
       borderRadius: '50%',
       x: -6,
       y: -6,
@@ -74,7 +82,7 @@ export function CustomCursor() {
     link: {
       width: 40,
       height: 40,
-      backgroundColor: 'white',
+      backgroundColor: '#000',
       mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
       borderRadius: '50%',
       x: -20,
@@ -83,7 +91,7 @@ export function CustomCursor() {
     button: {
       width: 60,
       height: 30,
-      backgroundColor: 'white',
+      backgroundColor: '#000',
       mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
       borderRadius: '15px',
       x: -30,
@@ -92,7 +100,7 @@ export function CustomCursor() {
     text: {
       width: 2,
       height: 24,
-      backgroundColor: 'white',
+      backgroundColor: '#000',
       mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
       borderRadius: '0px',
       x: -1,
@@ -101,7 +109,7 @@ export function CustomCursor() {
     drag: {
       width: 80,
       height: 80,
-      backgroundColor: 'white',
+      backgroundColor: '#000',
       mixBlendMode: 'difference' as React.CSSProperties['mixBlendMode'],
       borderRadius: '50%',
       x: -40,
@@ -111,8 +119,13 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:block"
       style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        pointerEvents: 'none',
+        zIndex: 99998,
+        display: visible ? 'block' : 'none',
         x: cursorX,
         y: cursorY,
       }}
@@ -134,8 +147,7 @@ export function CustomCursor() {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
-              className="text-[10px] font-bold text-black tracking-widest"
-              style={{ mixBlendMode: 'normal' as const }}
+              style={{ mixBlendMode: 'normal' as const, fontSize: '10px', fontWeight: 800, color: '#fff', letterSpacing: '0.15em' }}
             >
               DRAG
             </motion.span>

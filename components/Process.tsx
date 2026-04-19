@@ -1,6 +1,6 @@
 'use client'
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 const steps = [
   { id: '01', title: 'AUDIT', desc: 'Deep technical analysis of your current stack and performance bottlenecks.' },
@@ -11,38 +11,98 @@ const steps = [
 ]
 
 export function Process() {
+  const targetRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  })
+
+  // Horizontal scroll on desktop
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"])
+
   return (
-    <section id="process" style={{ padding: '8rem clamp(1.5rem, 5vw, 6rem)', background: '#fff', borderTop: '2px solid #000' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '4rem' }}>
-        <div>
-          <h2 className="font-syne" style={{ fontSize: 'clamp(2.5rem, 5vw, 5rem)', fontWeight: 800, textTransform: 'uppercase', lineHeight: 1, position: 'sticky', top: '120px' }}>
-            Process Is The <br /> Key To <i style={{ fontWeight: 400, fontStyle: 'italic' }}>Success</i>
+    <>
+    <section id="process" ref={targetRef} className="process-section" style={{ background: '#000', color: '#fff' }}>
+      <div className="process-sticky">
+        <div style={{ padding: '4rem 6rem' }}>
+          <h2 className="font-syne" style={{ fontSize: 'clamp(2.5rem, 5vw, 5rem)', fontWeight: 800, textTransform: 'uppercase', lineHeight: 1 }}>
+            Our <i style={{ fontWeight: 400, fontStyle: 'italic' }}>Method</i>
           </h2>
         </div>
 
-        <div>
+        <motion.div 
+          style={{ x }}
+          className="process-track"
+        >
           {steps.map((step, i) => (
-            <motion.div 
+            <div 
               key={i}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="process-card"
               style={{ 
-                padding: '3rem 0', 
-                borderBottom: '1px solid #000',
+                minWidth: '500px',
+                padding: '4rem',
+                borderRight: '1px solid rgba(255,255,255,0.1)',
                 display: 'flex',
-                gap: '4rem'
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                height: '400px'
               }}
             >
-              <span className="font-syne" style={{ fontSize: '1rem', fontWeight: 800, color: '#bbb' }}>{step.id}</span>
+              <span className="font-syne" style={{ fontSize: '5rem', fontWeight: 900, opacity: 0.1, lineHeight: 1 }}>{step.id}</span>
               <div>
-                <h3 className="font-syne" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1rem' }}>{step.title}</h3>
-                <p className="font-syne" style={{ fontSize: '1.1rem', color: '#666', maxWidth: '40ch' }}>{step.desc}</p>
+                <h3 className="font-syne" style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1.5rem', letterSpacing: '0.1rem' }}>{step.title}</h3>
+                <p className="font-syne" style={{ fontSize: '1.1rem', opacity: 0.6, maxWidth: '35ch', lineHeight: 1.6 }}>{step.desc}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
+
+    {/* Mobile fallback handled via CSS */}
+    <style dangerouslySetInnerHTML={{__html: `
+      .process-section {
+        position: relative;
+        height: 300vh;
+      }
+      .process-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .process-track {
+        display: flex;
+        padding-left: 6rem;
+      }
+      @media (max-width: 1024px) {
+        .process-section {
+          height: auto !important;
+          padding: 6rem 2rem;
+        }
+        .process-sticky {
+          position: relative !important;
+          height: auto !important;
+          display: block !important;
+        }
+        .process-track {
+          display: flex !important;
+          flex-direction: column !important;
+          transform: none !important;
+          padding-left: 0 !important;
+        }
+        .process-card {
+          min-width: 100% !important;
+          height: auto !important;
+          border-right: none !important;
+          border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+          padding: 4rem 0 !important;
+        }
+      }
+    `}} />
+    </>
   )
 }
+

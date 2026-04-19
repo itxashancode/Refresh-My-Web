@@ -1,32 +1,36 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Minus } from 'lucide-react'
+import { Plus, ArrowUpRight } from 'lucide-react'
 
 const services = [
   {
     id: '01',
-    title: 'BRANDING',
-    desc: "Crafting timeless visual identities that resonate and scale. We don't just design logos; we build legacy systems.",
-    deliverables: ['Identity System', 'Brand Guidelines', 'Typography Pack', 'Digital Assets']
+    title: 'Digital Strategy',
+    desc: "We define the path to dominance. Our strategy isn't just a document; it's a battle plan for digital relevance, focusing on longevity and peak performance.",
+    icon: <ArrowUpRight className="text-black" />,
+    deliverables: ['Market Analysis', 'Architecture Audit', 'Growth Roadmap']
   },
   {
     id: '02',
-    title: 'UX/UI DESIGN',
-    desc: "High-end editorial design meets functional precision. We create interfaces that feel like premium digital objects.",
-    deliverables: ['Design Audit', 'High-Fi Prototypes', 'Design System', 'User Flows']
+    title: 'High-End Design',
+    desc: "Editorial aesthetics meet functional precision. We create digital interfaces that feel like luxury objects, combining brutalist grids with elegant typography.",
+    icon: <ArrowUpRight className="text-black" />,
+    deliverables: ['Branding', 'UX/UI Systems', 'Editorial Layouts']
   },
   {
     id: '03',
-    title: 'DEVELOPMENT',
-    desc: "Bespoke engineering with zero bloat. Performance-first architecture designed for speed and longevity.",
-    deliverables: ['Next.js / Vite', 'Performance Tuning', 'CMS Integration', 'Custom Logic']
+    title: 'Modern Engineering',
+    desc: "Next-generation stack for ultimate speed. We build with a focus on performance, accessibility, and zero-bloat standard that ensures your site stays fresh.",
+    icon: <ArrowUpRight className="text-black" />,
+    deliverables: ['Next.js Framework', 'Framer Motion', 'SEO Optimization']
   },
   {
     id: '04',
-    title: 'ILLUSTRATION',
-    desc: "Unique visual storytelling that sets your brand apart from the noise of generic assets.",
-    deliverables: ['Custom Icons', 'Digital Art', 'Motion Elements', 'Style Guide']
+    title: 'Managed Growth',
+    desc: "Continuous evolution of your digital asset. We don't just launch; we iterate, optimize, and maintain your competitive edge in a shifting landscape.",
+    icon: <ArrowUpRight className="text-black" />,
+    deliverables: ['Monthly Audits', 'Performance Tuning', 'Content Scaling']
   }
 ]
 
@@ -43,11 +47,20 @@ export function Services() {
 
       <div style={{ borderTop: '2px solid #000' }}>
         {services.map((svc, i) => (
-          <div key={i} style={{ borderBottom: '1px solid #000' }}>
+          <div 
+            key={i} 
+            style={{ 
+              borderBottom: '1px solid #000',
+              borderLeft: active === i ? '8px solid #000' : '0px solid #000',
+              paddingLeft: active === i ? '2rem' : '0rem',
+              transition: 'all 0.4s cubic-bezier(0.33, 1, 0.68, 1)'
+            }}
+          >
             <div 
               onClick={() => setActive(active === i ? null : i)}
+              onMouseEnter={() => active === null && setActive(i)}
               style={{ 
-                padding: '3rem 0', 
+                padding: '4rem 0', 
                 display: 'flex', 
                 alignItems: 'center', 
                 cursor: 'pointer',
@@ -55,13 +68,18 @@ export function Services() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '4rem' }}>
-                <span className="font-syne" style={{ fontSize: '1rem', fontWeight: 800, color: '#bbb' }}>{svc.id}</span>
-                <h3 className="font-syne" style={{ fontSize: 'clamp(1.5rem, 3vw, 3rem)', fontWeight: 800, textTransform: 'uppercase' }}>
+                <span className="font-syne" style={{ fontSize: '1rem', fontWeight: 800, color: active === i ? '#000' : '#bbb' }}>{svc.id}</span>
+                <h3 className="font-syne" style={{ fontSize: 'clamp(1.5rem, 3vw, 3.5rem)', fontWeight: 800, textTransform: 'uppercase', color: active === i ? '#000' : '#444' }}>
                   {svc.title}
                 </h3>
               </div>
               <div>
-                {active === i ? <Minus size={32} /> : <Plus size={32} />}
+                <motion.div
+                  animate={{ rotate: active === i ? 45 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Plus size={40} />
+                </motion.div>
               </div>
             </div>
 
@@ -71,20 +89,31 @@ export function Services() {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
                   style={{ overflow: 'hidden' }}
                 >
-                  <div style={{ padding: '0 0 4rem 10vw', display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '4rem' }}>
-                    <p className="font-syne" style={{ fontSize: '1.25rem', lineHeight: 1.6, maxWidth: '50ch' }}>
-                      {svc.desc}
-                    </p>
-                    <div style={{ borderLeft: '1px solid #ddd', paddingLeft: '4rem' }}>
-                      <p className="font-syne" style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.2em', marginBottom: '1.5rem', color: '#888' }}>
-                        DELIVERABLES
+                  <div style={{ padding: '0 0 5rem 10vw', display: 'grid', gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 0.8fr)', gap: '4rem' }}>
+                    <div>
+                      <p className="font-syne" style={{ fontSize: '1.5rem', lineHeight: 1.5, maxWidth: '50ch', color: '#000' }}>
+                        {svc.desc}
                       </p>
-                      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                    </div>
+                    <div style={{ borderLeft: '1px solid #000', paddingLeft: '4rem' }}>
+                      <p className="font-syne" style={{ fontSize: '0.75rem', fontWeight: 900, letterSpacing: '0.2rem', marginBottom: '2rem', textTransform: 'uppercase' }}>
+                        Results Delivered
+                      </p>
+                      <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         {svc.deliverables.map((item, idx) => (
-                          <li key={idx} className="font-syne" style={{ fontSize: '1rem', fontWeight: 700 }}>— {item}</li>
+                          <motion.li 
+                            initial={{ x: -10, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ delay: 0.1 * idx }}
+                            key={idx} 
+                            className="font-syne" 
+                            style={{ fontSize: '1.1rem', fontWeight: 700 }}
+                          >
+                            — {item}
+                          </motion.li>
                         ))}
                       </ul>
                     </div>
@@ -98,3 +127,4 @@ export function Services() {
     </section>
   )
 }
+

@@ -1,39 +1,24 @@
-# Refresh My Web 🌐
+# Refresh My Web - Next.js 14 App Router
 
-A modern, premium landing page for a website optimization & maintenance service. This project showcases UI/UX refinement, SEO optimization, performance tuning, accessibility, and long-term maintenance using a sleek glassmorphism design and smooth animations.
+A highly aesthetic, dark-luxury style web application with rich GSAP, Framer Motion, and Lenis scroll animations.
 
-# ✨ Features
+## Tech Stack
+* Next.js 14
+* Framer Motion
+* GSAP
+* Lenis Smooth Scroll
+* Pure CSS Variables
 
-Responsive, mobile-first layout
+## Getting Started
 
-Glassmorphism dark UI design
+First, install the dependencies:
+```bash
+npm install
+```
 
-GSAP & ScrollTrigger animations
+Then, run the development server:
+```bash
+npm run dev
+```
 
-SEO-friendly HTML structure
-
-Accessibility-focused components
-
-Interactive contact form with validation
-
-Performance-optimized layout
-
-# 🛠 Tech Stack
-
-HTML5
-
-CSS3 (Custom properties & animations)
-
-JavaScript (ES6+)
-
-GSAP & ScrollReveal
-
-Bootstrap Grid
-
-# 🚀 Usage
-
-Simply open index.html in your browser or deploy it on any static hosting platform like Vercel, Netlify, or GitHub Pages.
-
-# 📄 License
-
-This project is open-source and free to use for learning and portfolio purposes.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

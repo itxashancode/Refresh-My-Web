@@ -130,7 +130,9 @@ export const BeforeAfter = () => {
             className="absolute inset-y-0 z-20 w-1 bg-black dark:bg-white shadow-[0_0_20px_rgba(0,0,0,0.2)] dark:shadow-[0_0_20px_rgba(255,255,255,0.2)] pointer-events-none"
             style={{ left: `${sliderPos}%` }}
           >
-            <motion.div 
+            <motion.button 
+              type="button"
+              aria-label="Drag to compare before and after"
               animate={{ scale: isDragging ? 1.1 : 1 }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-black dark:bg-white rounded-full shadow-[0_0_40px_rgba(0,0,0,0.4)] dark:shadow-[0_0_40px_rgba(255,255,255,0.2)] flex items-center justify-center pointer-events-auto border-4 border-white dark:border-black cursor-grab active:cursor-grabbing"
             >
@@ -138,15 +140,15 @@ export const BeforeAfter = () => {
                 <span>←</span>
                 <span>→</span>
               </div>
-            </motion.div>
+            </motion.button>
           </div>
         </div>
 
         {/* COMPARISON BULLETS */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 max-w-[900px] mx-auto px-4">
           <div className="space-y-6 text-center md:text-left">
-            <h4 className="text-[#ff4444] font-bold text-lg tracking-tighter">Before</h4>
-            <ul className="space-y-4 text-zinc-500 font-medium text-lg">
+            <h3 className="text-[#ff4444] font-bold text-lg tracking-tighter uppercase">Before</h3>
+            <ul className="space-y-4 text-zinc-600 dark:text-zinc-400 font-medium text-lg">
               <li className="flex items-center gap-3 justify-center md:justify-start">
                 <span className="w-1.5 h-1.5 bg-[#ff4444] rounded-full" /> High bounce rate
               </li>
@@ -160,7 +162,7 @@ export const BeforeAfter = () => {
           </div>
 
           <div className="space-y-6 text-center md:text-right">
-            <h4 className="text-black dark:text-white font-bold text-lg tracking-tighter">After</h4>
+            <h3 className="text-black dark:text-white font-bold text-lg tracking-tighter uppercase">After</h3>
             <ul className="space-y-4 text-zinc-600 dark:text-zinc-300 font-medium text-lg">
               <li className="flex items-center gap-3 justify-center md:justify-end">
                 Elite user experience <span className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full" />

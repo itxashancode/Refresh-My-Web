@@ -38,7 +38,7 @@ export const Navbar = () => {
         }`}
       >
         {/* Left Side Links - Desktop */}
-        <div className="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-500">
+        <div className="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-600 dark:text-zinc-400">
           {navLinks.map((item) => (
             <a 
               key={item.name}
@@ -72,7 +72,7 @@ export const Navbar = () => {
           <AnimatedThemeToggler
             variant="circle"
             duration={500}
-            className="w-10 h-10 flex items-center justify-center rounded-full text-zinc-500 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            className="w-10 h-10 flex items-center justify-center rounded-full text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
           />
           
           <div className="hidden sm:flex items-center gap-4">
@@ -90,7 +90,8 @@ export const Navbar = () => {
           {/* Mobile Menu Toggle */}
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-zinc-500 hover:text-black dark:hover:text-white transition-colors"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -110,7 +111,7 @@ export const Navbar = () => {
                     key={item.name}
                     href={item.href} 
                     onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold uppercase tracking-widest text-zinc-500 hover:text-black dark:hover:text-white transition-colors"
+                    className="text-lg font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
                   >
                     {item.name}
                   </a>

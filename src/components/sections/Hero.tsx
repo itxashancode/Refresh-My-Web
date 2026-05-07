@@ -36,7 +36,7 @@ export const Hero = () => {
               className="absolute top-[20%] right-0 bg-white/10 dark:bg-zinc-800/10 backdrop-blur-md p-3 px-5 rounded-full border border-zinc-200/20 dark:border-zinc-700/20 shadow-xl flex items-center gap-3"
             >
               <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.8)]" />
-              <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">99.9% Uptime Verified</span>
+              <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-600 dark:text-zinc-300">99.9% Uptime Verified</span>
             </motion.div>
 
             <motion.div
@@ -45,7 +45,7 @@ export const Hero = () => {
               className="absolute bottom-[40%] -left-12 bg-white/10 dark:bg-zinc-800/10 backdrop-blur-md p-3 px-5 rounded-full border border-zinc-200/20 dark:border-zinc-700/20 shadow-xl flex items-center gap-3"
             >
               <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
-              <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">Elite UX Architecture</span>
+              <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-600 dark:text-zinc-300">Elite UX Architecture</span>
             </motion.div>
           </div>
 
@@ -54,10 +54,10 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-sm font-medium mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-sm font-medium mb-8 text-zinc-900 dark:text-zinc-100"
             >
               <Sparkles className="w-4 h-4" />
-              <span>We transform <span className="accent-italic px-1">&quot;Legacy&quot;</span> into <span className="accent-italic px-1">&quot;Leading&quot;</span></span>
+              <span>We transform <span className="accent-italic px-1 text-inherit">&quot;Legacy&quot;</span> into <span className="accent-italic px-1 text-inherit">&quot;Leading&quot;</span></span>
             </motion.div>
             
             <h1 className="hero-title mb-8 text-black dark:text-white transition-colors duration-300">
@@ -72,19 +72,19 @@ export const Hero = () => {
                   transition={{ duration: 4, repeat: Infinity }}
                   className="hidden md:block"
                 >
-                  <Code2 className="w-12 h-12 text-zinc-300 dark:text-zinc-700 opacity-50" />
+                  <Code2 className="w-12 h-12 text-zinc-400 dark:text-zinc-600 opacity-50" />
                 </motion.div>
               </span>
               <br className="hidden md:block" />
               <span>your web </span>
-              <span className="bg-gradient-to-r from-zinc-400 to-zinc-800 bg-clip-text text-transparent italic accent-italic inline-flex items-center gap-4">
+              <span className="bg-gradient-to-r from-zinc-400 to-zinc-800 dark:from-zinc-100 dark:to-zinc-500 bg-clip-text text-transparent italic accent-italic inline-flex items-center gap-4">
                 for the modern age.
                 <motion.div
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 3, repeat: Infinity }}
                   className="hidden md:block"
                 >
-                  <Palette className="w-12 h-12 text-zinc-400/30" />
+                  <Palette className="w-12 h-12 text-zinc-400/30 dark:text-zinc-500/30" />
                 </motion.div>
               </span>
             </h1>
@@ -93,7 +93,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.55 }}
-              className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-zinc-600 dark:text-zinc-300 mb-12 max-w-2xl mx-auto leading-relaxed"
             >
               We believe your online presence should be as authentic as your craft. We partner with you to rebuild, refresh, and maintain a space that truly resonates with your audience.
             </motion.p>
@@ -124,7 +124,7 @@ export const Hero = () => {
                 </Button>
               </div>
 
-              <div className="flex items-center justify-center gap-2 text-[11px] text-zinc-400 dark:text-zinc-500 tracking-widest font-medium uppercase">
+              <div className="flex items-center justify-center gap-2 text-[11px] text-zinc-600 dark:text-zinc-400 tracking-widest font-medium uppercase">
                 <ShieldCheck className="w-3 h-3 flex-shrink-0" />
                 <span className="whitespace-nowrap">No contracts. No upfront risk. Results or we work free.</span>
               </div>

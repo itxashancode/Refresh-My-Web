@@ -1,10 +1,12 @@
 /* g:\RefreshMyWeb\src\components\providers\SmoothScroll.tsx */
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
 
 export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
+  const rafId = useRef<number | null>(null);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -20,12 +22,15 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
 
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId.current = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId.current = requestAnimationFrame(raf);
 
     return () => {
+      if (rafId.current !== null) {
+        cancelAnimationFrame(rafId.current);
+      }
       lenis.destroy();
     };
   }, []);
